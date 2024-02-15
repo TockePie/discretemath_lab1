@@ -5,7 +5,7 @@ from tkinter import *
 
 # Функції, які генерують множини
 def universal_set():
-    u.clear()
+    u.clear()  # Очищає універсальну множину та генерує нову на основі введення користувача
     global left_border
     left_border = int(left_universal_data.get())
     global right_border
@@ -17,7 +17,7 @@ def universal_set():
 
 
 def gen_set_A():
-    a.clear()
+    a.clear()  # Очищає множину A та генерує нову заданого розміру
     print("Генерується множина A")
     power = int(set_a_data.get())
     while len(a) != power:
@@ -27,6 +27,7 @@ def gen_set_A():
     print(a)
 
 
+# Інші подібні функції для генерації множин B та C визначаються аналогічно
 def gen_set_B():
     b.clear()
     print("Генерується множина B")
@@ -51,13 +52,14 @@ def gen_set_C():
 
 # Функції, які дають можливість ручного вводу
 def manual_input_set_a():
-    a.clear()
+    a.clear()  # Ручне введення множини A
     a_pool = manual_data_set_a.get().split(",")
     for i in a_pool:
         a.add(int(i))
     print("A: ", a)
 
 
+# Інші подібні функції для ручного введення множин B та C визначаються аналогічно
 def manual_input_set_b():
     b.clear()
     b_pool = manual_data_set_b.get().split(",")
@@ -76,6 +78,39 @@ def manual_input_set_c():
 
 # Вікно 2
 def second_window():
+    def save_txt_file():
+        f = open(r"D.txt", "w")
+        f.write(str(step_eighth_of_calculation))
+        f.close()
+
+    # Включає кроки для обчислення множини D за допомогою визначених функцій
+    def step1():
+        Label(root2, text=f"¬A ∩ B: {step_first_of_calculation}", font='Arial 12').place(x=10, y=60+10)
+
+    def step2():
+        Label(root2, text=f"¬B ∩ ¬A: {step_second_of_calculation}", font='Arial 12').place(x=10, y=80+10)
+
+    def step3():
+        Label(root2, text=f"¬A ∪ B: {step_third_of_calculation}", font='Arial 12').place(x=10, y=100+10)
+
+    def step4():
+        Label(root2, text=f"¬(¬A ∩ B): {step_fourth_of_calculation}", font='Arial 12').place(x=10, y=120+10)
+
+    def step5():
+        Label(root2, text=f"¬(¬B ∩ ¬A): {step_fifth_of_calculation}", font='Arial 12').place(x=10, y=140+10)
+
+    def step6():
+        Label(root2, text=f"С ∪ ¬(¬A ∩ B): {step_sixth_of_calculation}", font='Arial 12').place(x=10, y=160+10)
+
+    def step7():
+        Label(root2, text=f"С ∪ ¬(¬A ∩ B) ∩ ¬(¬B ∩ ¬A): {step_seventh_of_calculation}",
+              font='Arial 12').place(x=10, y=180+10)
+
+    def step8():
+        Label(root2, text=f"С ∪ ¬(¬A ∩ B) ∩ ¬(¬B ∩ ¬A) ∩ (¬A ∪ B): {step_eighth_of_calculation}",
+              font='Arial 12').place(x=10, y=200+10)
+        Label(root2, text=f'Результат D: {step_eighth_of_calculation}', font='Arial 12').place(x=500, y=320)
+
     step_first_of_calculation = functions.step1(a, b, u)
     step_second_of_calculation = functions.step2(a, b, u)
     step_third_of_calculation = functions.step3(a, b, u)
@@ -85,55 +120,28 @@ def second_window():
     step_seventh_of_calculation = functions.step7(step_sixth_of_calculation, step_fifth_of_calculation)
     step_eighth_of_calculation = functions.step8(step_seventh_of_calculation, step_third_of_calculation)
 
-    def save_txt_file():
-        f = open(r"D.txt", "w")
-        f.write(str(step_eighth_of_calculation))
-        f.close()
-
-    def step1():
-        Label(root2, text=f"¬A ∩ B: {step_first_of_calculation}", font='Arial 12').place(x=0, y=60)
-
-    def step2():
-        Label(root2, text=f"¬B ∩ ¬A: {step_second_of_calculation}", font='Arial 12').place(x=0, y=80)
-
-    def step3():
-        Label(root2, text=f"¬A ∪ B: {step_third_of_calculation}", font='Arial 12').place(x=0, y=100)
-
-    def step4():
-        Label(root2, text=f"¬(¬A ∩ B): {step_fourth_of_calculation}", font='Arial 12').place(x=0, y=120)
-
-    def step5():
-        Label(root2, text=f"¬(¬B ∩ ¬A): {step_fifth_of_calculation}", font='Arial 12').place(x=0, y=140)
-
-    def step6():
-        Label(root2, text=f"С ∪ ¬(¬A ∩ B): {step_sixth_of_calculation}", font='Arial 12').place(x=0, y=160)
-
-    def step7():
-        Label(root2, text=f"С ∪ ¬(¬A ∩ B) ∩ ¬(¬B ∩ ¬A): {step_seventh_of_calculation}", font='Arial 12').place(x=0, y=180)
-
-    def step8():
-        Label(root2, text=f"С ∪ ¬(¬A ∩ B) ∩ ¬(¬B ∩ ¬A) ∩ (¬A ∪ B): {step_eighth_of_calculation}", font='Arial 12').place(x=0, y=200)
-        Label(root2, text=f'Результат D: {step_eighth_of_calculation}', font='Arial 12').place(x=500, y=220)
-
+    # Відображає результати в вікні GUI
     root2 = Tk()
     root2.title("Вікно 2")
     root2.title("Вікно 2")
-    root2.geometry("750x300")
+    root2.geometry("900x400")
     Label(root2, text=f'A: {a}  ¬A: {u - a}', font='Arial 12').place(x=0)
     Label(root2, text=f'B: {b}  ¬B: {u - b}', font='Arial 12').place(x=0, y=20)
     Label(root2, text=f'C: {c}', font='Arial 12').place(x=0, y=40)
-    Button(root2, width=8, text="Крок 1", font="Arial 10", command=step1).place(x=0, y=220)
-    Button(root2, width=8, text="Крок 2", font="Arial 10", command=step2).place(x=80, y=220)
-    Button(root2, width=8, text="Крок 3", font="Arial 10", command=step3).place(x=160, y=220)
-    Button(root2, width=8, text="Крок 4", font="Arial 10", command=step4).place(x=240, y=220)
-    Button(root2, width=8, text="Крок 5", font="Arial 10", command=step5).place(x=320, y=220)
-    Button(root2, width=8, text="Крок 6", font="Arial 10", command=step6).place(x=400, y=220)
-    Button(root2, width=8, text="Крок 7", font="Arial 10", command=step7).place(x=0, y=250)
-    Button(root2, width=8, text="Крок 8", font="Arial 10", command=step8).place(x=80, y=250)
-    Button(root2, width=24, text="Завантажити D у файл на ПК", font="Arial 10", command=save_txt_file).place(x=500, y=250)
+    Button(root2, width=8, text="Крок 1", font="Arial 10", command=step1).place(x=0+30, y=320)
+    Button(root2, width=8, text="Крок 2", font="Arial 10", command=step2).place(x=80+30, y=320)
+    Button(root2, width=8, text="Крок 3", font="Arial 10", command=step3).place(x=160+30, y=320)
+    Button(root2, width=8, text="Крок 4", font="Arial 10", command=step4).place(x=240+30, y=320)
+    Button(root2, width=8, text="Крок 5", font="Arial 10", command=step5).place(x=0+30, y=350)
+    Button(root2, width=8, text="Крок 6", font="Arial 10", command=step6).place(x=80+30, y=350)
+    Button(root2, width=8, text="Крок 7", font="Arial 10", command=step7).place(x=160+30, y=350)
+    Button(root2, width=8, text="Крок 8", font="Arial 10", command=step8).place(x=240+30, y=350)
+    Button(root2, width=24, text="Завантажити D у файл на ПК", font="Arial 10",
+           command=save_txt_file).place(x=500, y=350)
 
 
 # Вікно 3
+# Інші функції вікон (third_window, fourth_window, fifth_window) визначаються аналогічно
 def third_window():
     step_first_of_calculation = functions.first_short_step(a, c)
     step_second_of_calculation = functions.second_short_step(step_first_of_calculation, b)
@@ -144,21 +152,22 @@ def third_window():
         f.close()
 
     def step1():
-        Label(root3, text=f"C ∪ A: {step_first_of_calculation}", font='Arial 12').place(x=0, y=60)
+        Label(root3, text=f"C ∪ A: {step_first_of_calculation}", font='Arial 12').place(x=10, y=60+10)
 
     def step2():
-        Label(root3, text=f"C ∪ A ∩ B: {step_second_of_calculation}", font='Arial 12').place(x=0, y=80)
-        Label(root3, text=f'Результат D: {step_second_of_calculation}', font='Arial 12').place(x=200, y=125)
+        Label(root3, text=f"C ∪ A ∩ B: {step_second_of_calculation}", font='Arial 12').place(x=10, y=80+10)
+        Label(root3, text=f'Результат D: {step_second_of_calculation}', font='Arial 12').place(x=200, y=180)
 
     root3 = Tk()
     root3.title("Вікно 3")
-    root3.geometry("450x200")
+    root3.geometry("900x300")
     Label(root3, text=f'A: {a}', font='Arial 12').place(x=0)
     Label(root3, text=f'B: {b}', font='Arial 12').place(x=0, y=20)
     Label(root3, text=f'C: {c}', font='Arial 12').place(x=0, y=40)
-    Button(root3, width=8, text="Крок 1", font="Arial 10", command=step1).place(x=0, y=120)
-    Button(root3, width=8, text="Крок 2", font="Arial 10", command=step2).place(x=80, y=120)
-    Button(root3, width=24, text="Завантажити D у файл на ПК", font="Arial 10", command=save_simplified_txt_file).place(x=200, y=150)
+    Button(root3, width=8, text="Крок 1", font="Arial 10", command=step1).place(x=0 + 30, y=220)
+    Button(root3, width=8, text="Крок 2", font="Arial 10", command=step2).place(x=80 + 30, y=220)
+    Button(root3, width=24, text="Завантажити D у файл на ПК", font="Arial 10",
+           command=save_simplified_txt_file).place(x=200, y=220)
 
 
 # Вікно 4
@@ -172,15 +181,15 @@ def fourth_window():
 
     def step():
         Label(root4, text=f'X ∪ Y: {step_result}', font='Arial 12').place(x=0, y=60)
-        Label(root4, text=f'Результат Z: {step_result}', font='Arial 12').place(x=200, y=120)
+        Label(root4, text=f'Результат Z: {step_result}', font='Arial 12').place(x=20, y=120)
 
     root4 = Tk()
     root4.title("Вікно 4")
-    root4.geometry("450x200")
+    root4.geometry("900x300")
     Label(root4, text=f'X: {c}', font='Arial 12').place(x=0)
     Label(root4, text=f'Y: {u - a}', font='Arial 12').place(x=0, y=20)
-    Button(root4, width=12, text="Розрахувати", font="Arial 10", command=step).place(x=0, y=120)
-    Button(root4, width=24, text="Завантажити Z у файл на ПК", font="Arial 10", command=saver3).place(x=200, y=150)
+    Button(root4, width=12, text="Розрахувати", font="Arial 10", command=step).place(x=0 + 30, y=220)
+    Button(root4, width=24, text="Завантажити Z у файл на ПК", font="Arial 10", command=saver3).place(x=120 + 30, y=220)
 
 
 # Вікно 5
@@ -190,24 +199,26 @@ def fifth_window():
         global data_usual_d_file
         data_usual_d_file = usual_d_file.read()
         usual_d_file.close()
-        Label(root5, text=f'D: {data_usual_d_file}', font='Arial 12').place(x=0)
+        Label(root5, text=f'D: {data_usual_d_file}', font='Arial 12').place(x=10)
         
         simple_d_file = open(r"D_simplified.txt", "r")
         global data_simple_d_file
         data_simple_d_file = simple_d_file.read()
         simple_d_file.close()
-        Label(root5, text=f'Спрощене D: {data_simple_d_file}', font='Arial 12').place(x=0, y=20)
+        Label(root5, text=f'Спрощене D: {data_simple_d_file}', font='Arial 12').place(x=10, y=20)
         
         z1 = open(r"customZ.txt", "r")
         global z1_data
         z1_data = z1.read()
         z1.close()
-        Label(root5, text=f'Z обчислене функцією яка написана мною: {z1_data}', font='Arial 12').place(x=0, y=40)
+        Label(root5, text=f'З використанням функції, яку я сам написав для Z: ', font='Arial 12').place(x=10, y=40)
+        Label(root5, text=f'{z1_data}', font='Arial 12').place(x=10, y=60)
 
     z2_data = str(functions.calc(u - a, c))
 
     def step():
-        Label(root5, text=f'Z обчислене функціями пайтон: {z2_data}', font='Arial 12').place(x=0, y=60)
+        Label(root5, text=f'Z обчислене функціями Python: ', font='Arial 12').place(x=10, y=80)
+        Label(root5, text=f'{z2_data}', font='Arial 12').place(x=10, y=100)
 
     def compare_d():
         if data_usual_d_file == data_simple_d_file:
@@ -223,12 +234,12 @@ def fifth_window():
 
     root5 = Tk()
     root5.title("Вікно 5")
-    root5.geometry("800x400")
-    Button(root5, width=18, text="Зчитати результати", font="Arial 10", command=data_read).place(x=0, y=200)
-    Button(root5, width=34, text="Обчислити Z за допомогою функцій пайтон", font="Arial 10", command=step).place(x=0,
-                                                                                                                 y=230)
-    Button(root5, width=12, text="Порівняти D", font="Arial 10", command=compare_d).place(x=0, y=260)
-    Button(root5, width=12, text="Порівняти Z", font="Arial 10", command=compare_z).place(x=0, y=290)
+    root5.geometry("900x300")
+    Button(root5, width=18, text="Зчитати результати", font="Arial 10", command=data_read).place(x=15, y=200)
+    Button(root5, width=34, text="Обчислити Z за допомогою функцій Python",
+           font="Arial 10", command=step).place(x=15, y=230)
+    Button(root5, width=12, text="Порівняти D", font="Arial 10", command=compare_d).place(x=15, y=260)
+    Button(root5, width=12, text="Порівняти Z", font="Arial 10", command=compare_z).place(x=125, y=260)
 
 
 u = set()
