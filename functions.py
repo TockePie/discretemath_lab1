@@ -44,17 +44,17 @@ def step8(var7, var3):
 
 
 # Обчислення спрощеного виразу
-def simplestep1(a, c):
-    return (c | a)
+def first_short_step(a, c):
+    return c | a
 
 
-def simplestep2(var, b):
-    return (var & b)
+def second_short_step(var, b):
+    return var & b
 
 
 # Обчислення другої лог операції
 def calc(not_a, c):
-    return (not_a | c)
+    return not_a | c
 
 
 # Обчислення другої лог. операії власною функцією
@@ -62,4 +62,4 @@ def cuscalc(not_a, c):
     for i in c:
         if i not in not_a:
             not_a.add(i)
-    return (not_a)
+    return not_a
