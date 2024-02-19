@@ -172,7 +172,7 @@ def third_window():
 
 # Вікно 4
 def fourth_window():
-    step_result = functions.cuscalc(u - a, c)
+    step_result = functions.custom_calc_union(u - a, c)
 
     def saver3():
         f = open(r"customZ.txt", "w")
@@ -214,7 +214,7 @@ def fifth_window():
         Label(root5, text=f'З використанням функції, яку я сам написав для Z: ', font='Arial 12').place(x=10, y=40)
         Label(root5, text=f'{z1_data}', font='Arial 12').place(x=10, y=60)
 
-    z2_data = str(functions.calc(u - a, c))
+    z2_data = str(functions.calc_union(u - a, c))
 
     def step():
         Label(root5, text=f'Z обчислене функціями Python: ', font='Arial 12').place(x=10, y=80)
