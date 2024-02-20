@@ -7,73 +7,115 @@ from tkinter import *
 def universal_set():
     u.clear()  # Очищає універсальну множину та генерує нову на основі введення користувача
     global left_border
-    left_border = int(left_universal_data.get())
     global right_border
-    right_border = int(right_universal_data.get())
-    universal_range = range(left_border, right_border + 1, 1)
-    for i in universal_range:
-        u.add(i)
-    print(u)
+    try:
+        left_border = int(left_universal_data.get())
+        right_border = int(right_universal_data.get())
+        if left_border <= 0 or right_border <= 0:
+            raise ValueError("Введені числа повинні бути додатніми.")
+
+        universal_range = range(left_border, right_border + 1, 1)
+        for i in universal_range:
+            u.add(i)
+        print(u)
+    except ValueError as e:
+        print("Помилка:", e)
 
 
 def gen_set_A():
     a.clear()  # Очищає множину A та генерує нову заданого розміру
-    print("Генерується множина A")
-    power = int(set_a_data.get())
-    while len(a) != power:
-        number = random.randint(left_border, right_border)
-        if number not in a:
-            a.add(number)
-    print(a)
+    try:
+        print("Генерується множина A")
+        power = int(set_a_data.get())
+        if power <= 0:
+            raise ValueError("Розмір множини повинен бути додатнім числом.")
+
+        while len(a) != power:
+            number = random.randint(left_border, right_border)
+            if number not in a:
+                a.add(number)
+        print(a)
+    except ValueError as e:
+        print("Помилка:", e)
 
 
 # Інші подібні функції для генерації множин B та C визначаються аналогічно
 def gen_set_B():
     b.clear()
-    print("Генерується множина B")
-    power = int(set_b_data.get())
-    while len(b) != power:
-        number = random.randint(left_border, right_border)
-        if number not in b:
-            b.add(number)
-    print(b)
+    try:
+        print("Генерується множина B")
+        power = int(set_b_data.get())
+        if power <= 0:
+            raise ValueError("Розмір множини повинен бути додатнім числом.")
+
+        while len(b) != power:
+            number = random.randint(left_border, right_border)
+            if number not in b:
+                b.add(number)
+        print(b)
+    except ValueError as e:
+        print("Помилка:", e)
 
 
 def gen_set_C():
     c.clear()
-    print("Генерується множина C")
-    power = int(set_c_data.get())
-    while len(c) != power:
-        number = random.randint(left_border, right_border)
-        if number not in c:
-            c.add(number)
-    print(c)
+    try:
+        print("Генерується множина C")
+        power = int(set_c_data.get())
+        if power <= 0:
+            raise ValueError("Розмір множини повинен бути додатнім числом.")
+
+        while len(c) != power:
+            number = random.randint(left_border, right_border)
+            if number not in c:
+                c.add(number)
+        print(c)
+    except ValueError as e:
+        print("Помилка:", e)
 
 
 # Функції, які дають можливість ручного вводу
 def manual_input_set_a():
     a.clear()  # Ручне введення множини A
-    a_pool = manual_data_set_a.get().split(",")
-    for i in a_pool:
-        a.add(int(i))
-    print("A: ", a)
+    try:
+        a_pool = manual_data_set_a.get().split(",")
+        for i in a_pool:
+            num = int(i)
+            if num <= 0:
+                raise ValueError("Елементи множини повинні бути додатніми числами.")
+            a.add(num)
+        print("A: ", a)
+    except ValueError as e:
+        print("Помилка:", e)
 
 
 # Інші подібні функції для ручного введення множин B та C визначаються аналогічно
 def manual_input_set_b():
     b.clear()
-    b_pool = manual_data_set_b.get().split(",")
-    for i in b_pool:
-        b.add(int(i))
-    print("B: ", b)
+    try:
+        b_pool = manual_data_set_b.get().split(",")
+        for i in b_pool:
+            num = int(i)
+            if num <= 0:
+                raise ValueError("Елементи множини повинні бути додатніми числами.")
+            b.add(num)
+        print("B: ", b)
+    except ValueError as e:
+        print("Помилка:", e)
 
 
 def manual_input_set_c():
     c.clear()
-    c_pool = manual_data_set_c.get().split(",")
-    for i in c_pool:
-        c.add(int(i))
-    print("C: ", c)
+    try:
+        c_pool = manual_data_set_c.get().split(",")
+        for i in c_pool:
+            num = int(i)
+            if num <= 0:
+                raise ValueError("Елементи множини повинні бути додатніми числами.")
+            c.add(num)
+        print("C: ", c)
+    except ValueError as e:
+        print("Помилка:", e)
 
 
 # Вікно 2

@@ -27,7 +27,7 @@ def step2(a, b, u):  # Обчислення другого кроку вираз
 
 def step3(a, b, u):  # Обчислення третього кроку виразу: ¬A ∪ B
     not_a = u - a
-    result_of_calc = not_a | b
+    result_of_calc = calc_union(not_a, b)
     return result_of_calc
 
 
@@ -42,7 +42,7 @@ def step5(var2, u):  # Обчислення п'ятого кроку вираз�
 
 
 def step6(c, var4):  # Обчислення шостого кроку виразу: C ∪ ¬(¬A ∩ B)
-    result_of_calc = c | var4
+    result_of_calc = calc_union(c, var4)
     return result_of_calc
 
 
@@ -58,7 +58,7 @@ def step8(var7, var3):  # Обчислення восьмого кроку ви�
 
 # Обчислення спрощеного виразу
 def first_short_step(a, c):  # Знаходить об'єднання множин C та A
-    return c | a
+    return calc_union(c, a)
 
 
 def second_short_step(var, b):  # Обчислення спрощеного виразу: (C ∪ A) ∩ B
